@@ -17,9 +17,9 @@
                     </span>
             </a>
 
-            <a class="navbar-brand" href="#">
+            <div class="navbar-brand">
                 Widgets
-            </a>
+            </div>
             <p class="navbar-text pull-right">
                 <a href="widget-chooser.html" class="navbar-link">
                     <span class="glyphicon glyphicon-plus">
@@ -32,31 +32,40 @@
 
 
 <div class="container website-list-top">
-
-    <div>
-        <div>
-            <h1>This is a heading</h1>
-            <a href="website-edit.html" class="glyphicon glyphicon-cog"></a>
+    <div class="widget-edit-parent">
+        <div class="widget-edit-parent">
+            <h2>This is a heading</h2>
         </div>
-        <div class="widget-edit">
-            <a href="website-edit.html" class="glyphicon glyphicon-cog"></a>
-        </div>
-
-
-    </div>
-    <div>
-        <div> This is some random text description
-        </div>
-        <div>
+        <div class="widget-edit-child">
+            <a href="widget-image.html" class="glyphicon glyphicon-cog"></a>
+            <a href="widget-image.html" class="glyphicon glyphicon-menu-hamburger"></a>
         </div>
     </div>
-
+    <div class="widget-edit-parent">
+        <div class="widget-edit-parent">
+            This is a test paragraph. Contains more information.
+        </div>
+        <div class="widget-edit-child">
+            <a href="widget-image.html" class="glyphicon glyphicon-cog"></a>
+            <a href="widget-image.html" class="glyphicon glyphicon-menu-hamburger"></a>
+        </div>
+    </div>
+    <div class="widget-edit-parent">
+        <div class="widget-edit-parent">
+            <img src="https://unsplash.it/200/300/?random" class="imgStyle"/>
+        </div>
+        <div class="widget-edit-child">
+            <a href="widget-image.html" class="glyphicon glyphicon-cog"></a>
+            <a href="widget-image.html" class="glyphicon glyphicon-menu-hamburger"></a>
+        </div>
+    </div>
 </div>
 
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container">
         <div>
-            <a href="profile.html" class="navbar-brand navbar-link footer-style"> <span class="glyphicon glyphicon-user"></span></a>
+            <a href="profile.html" class="navbar-brand navbar-link footer-style"> <span
+                    class="glyphicon glyphicon-user"></span></a>
         </div>
     </div>
 </nav>
