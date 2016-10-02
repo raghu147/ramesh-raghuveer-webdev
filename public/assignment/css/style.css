@@ -10,3 +10,31 @@ body {
     padding-top: 36px;
     padding-bottom: 56px;
 }
+
+.website-list-top
+{
+    padding-top : 20px;
+}
+
+.float-right
+{
+    float:right;
+    margin-right: 15px;
+}
+
+.row-style
+{
+    color: rgb(65, 146, 191);
+    margin-top : 10px;
+
+}
+
+.footer-style
+{
+    float: right;
+}
+
+.widget-edit
+{
+    float:right;
+}
