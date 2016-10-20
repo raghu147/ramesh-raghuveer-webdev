@@ -1,0 +1,51 @@
+<nav class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class=" navbar-brand navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left">
+                    </span>
+            </a>
+
+            <div class="navbar-brand">
+                Widget Edit
+            </div>
+            <p class="navbar-text pull-right">
+                <a ng-click="model.handleHeaderWidget()" class="navbar-link">
+                    <span class="glyphicon glyphicon-ok">
+                    </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container website-list-top">
+    <form>
+        <div class="form-group">
+            <label for="widgetName">Name</label>
+            <input  ng-model = "model.widget.name"  type="text" class="form-control" id="widgetName" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <label for="text">Text</label>
+            <input ng-model = "model.widget.text"  type="text" class="form-control" id="text" placeholder="Text">
+        </div>
+        <div class="form-group">
+            <label for="size">Size</label>
+            <input ng-model = "model.widget.size"  type="text" class="form-control" id="size" placeholder="Size">
+        </div>
+
+        <!--<a class="btn btn-danger btn-block"-->
+           <!--href="website-list.html">Delete</a>-->
+    </form>
+</div>
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container">
+        <div>
+            <a href="#/user/{{model.uid}}" class="navbar-brand navbar-link footer-style"> <span
+                    class="glyphicon glyphicon-user"></span></a>
+        </div>
+    </div>
+</nav>

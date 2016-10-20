@@ -1,0 +1,104 @@
+<nav class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page" class=" navbar-brand navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left">
+                    </span>
+            </a>
+
+            <div class="navbar-brand">
+                Widgets
+            </div>
+            <p class="navbar-text pull-right">
+                <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new" class="navbar-link">
+                    <span class="glyphicon glyphicon-plus">
+                    </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container website-list-top">
+
+        <!--<div class="col-sm-4 hidden-xs">-->
+            <!--<ul class="list-group">-->
+                <!--<li ng-repeat="website in model.websites" class="list-group-item">-->
+                    <!--<a href="#">-->
+                        <!--{{website.name}}-->
+                    <!--</a>-->
+                    <!--<a href="#/user/{{model.userId}}/website/{{website._id}}" class="pull-right" style="margin-left: 15px;">-->
+                        <!--<span class="glyphicon glyphicon-cog"></span>-->
+                    <!--</a>-->
+                    <!--<a href="#" class="pull-right">-->
+                        <!--<span class="glyphicon glyphicon-play"></span>-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <div class="col-sm-12" style="padding-left: 30px;padding-right: 0px;">
+            <div ng-switch="widget.widgetType"
+                 ng-repeat="widget in model.widgets">
+                <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}" class="pull-right">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <div ng-switch="widget.size" ng-switch-when="HEADER">
+                    <h1 ng-switch-when="1">{{widget.text}}</h1>
+                    <h2 ng-switch-when="2">{{widget.text}}</h2>
+                    <h3 ng-switch-when="3">{{widget.text}}</h3>
+                    <h4 ng-switch-when="4">{{widget.text}}</h4>
+                    <h5 ng-switch-when="5">{{widget.text}}</h5>
+                    <h6 ng-switch-when="6">{{widget.text}}</h6>
+                </div>
+                <div ng-switch-when="YOUTUBE">
+                    <iframe width="100%" height="315"
+                            ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
+                            frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div ng-switch-when="IMAGE">
+                    <img ng-src = "{{widget.url}}" />
+                </div>
+                <div ng-switch-when="HTML" ng-bind-html="model.checkSafeHtml(widget.text)">
+                </div>
+            </div>
+
+        </div>
+    <!--<div class="widget-edit-parent">-->
+        <!--<div class="widget-edit-parent">-->
+            <!--<h2>This is a heading</h2>-->
+        <!--</div>-->
+        <!--<div class="widget-edit-child">-->
+            <!--<a href="widget-image.view.client.html" class="glyphicon glyphicon-cog"></a>-->
+            <!--<a href="widget-image.view.client.html" class="glyphicon glyphicon-menu-hamburger"></a>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="widget-edit-parent">-->
+        <!--<div class="widget-edit-parent">-->
+            <!--This is a test paragraph. Contains more information.-->
+        <!--</div>-->
+        <!--<div class="widget-edit-child">-->
+            <!--<a href="widget-image.view.client.html" class="glyphicon glyphicon-cog"></a>-->
+            <!--<a href="widget-image.view.client.html" class="glyphicon glyphicon-menu-hamburger"></a>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="widget-edit-parent">-->
+        <!--<div class="widget-edit-parent">-->
+            <!--<img src="https://unsplash.it/200/300/?random" class="imgStyle"/>-->
+        <!--</div>-->
+        <!--<div class="widget-edit-child">-->
+            <!--<a href="widget-image.view.client.html" class="glyphicon glyphicon-cog"></a>-->
+            <!--<a href="widget-image.view.client.html" class="glyphicon glyphicon-menu-hamburger"></a>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container">
+        <div>
+            <a href="#/user/{{model.uid}}" class="navbar-brand navbar-link footer-style"> <span
+                    class="glyphicon glyphicon-user"></span></a>
+        </div>
+    </div>
+</nav>
