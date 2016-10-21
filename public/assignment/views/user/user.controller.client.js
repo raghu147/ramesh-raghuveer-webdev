@@ -19,9 +19,6 @@
             }
         }
 
-
-
-
     }
 
     function ProfileController($routeParams, UserService) {
@@ -29,14 +26,11 @@
 
         vm.saveProfile = saveProfile;
 
-
-
         var userId = parseInt($routeParams.uid);
 
         function saveProfile() {
 
-            UserService.updateUser(userId+"", user);
-
+            UserService.updateUser(userId+"", vm.user);
         }
 
         var user = UserService.findUserById(userId+"");

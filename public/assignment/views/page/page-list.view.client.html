@@ -1,9 +1,8 @@
-
 <nav class="navbar navbar-inverse navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
+    <div class="container-fluid">
+        <div class="col-sm-12 ">
 
-            <a href="#/user/{{model.userId}}/website" class=" navbar-brand navbar-link">
+            <a href="#/user/{{model.userId}}/website" class=" navbar-brand navbar-link arrow-style">
                     <span class="glyphicon glyphicon-chevron-left">
                     </span>
             </a>
@@ -24,9 +23,9 @@
 <div class="container website-list-top">
 
     <div ng-repeat="page in model.pages" class="row-style">
-        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget"> {{page.name}}</a>
-        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
-            <div class="glyphicon glyphicon-cog float-right"></div>
+        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget " class="name-style"> {{page.name}}</a>
+        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}" class="pull-right right-cog-style">
+            <div class="glyphicon glyphicon-cog"></div>
         </a>
     </div>
 </div>

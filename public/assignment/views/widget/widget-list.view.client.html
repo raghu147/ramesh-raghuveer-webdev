@@ -1,8 +1,8 @@
 <nav class="navbar navbar-inverse navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
+    <div class="container-fluid">
+        <div class="col-sm-12">
 
-            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page" class=" navbar-brand navbar-link">
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page" class="navbar-brand navbar-link arrow-style">
                     <span class="glyphicon glyphicon-chevron-left">
                     </span>
             </a>
@@ -43,6 +43,7 @@
                  ng-repeat="widget in model.widgets">
                 <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}" class="pull-right">
                     <span class="glyphicon glyphicon-cog"></span>
+                    <span class="glyphicon glyphicon-menu-hamburger widget-cog-style"></span>
                 </a>
                 <div ng-switch="widget.size" ng-switch-when="HEADER">
                     <h1 ng-switch-when="1">{{widget.text}}</h1>
@@ -52,13 +53,13 @@
                     <h5 ng-switch-when="5">{{widget.text}}</h5>
                     <h6 ng-switch-when="6">{{widget.text}}</h6>
                 </div>
-                <div ng-switch-when="YOUTUBE">
-                    <iframe width="100%" height="315"
+                <div ng-switch-when="YOUTUBE" style="width:95%;">
+                    <iframe width="90%" height="315"
                             ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
                             frameborder="0" allowfullscreen></iframe>
                 </div>
-                <div ng-switch-when="IMAGE">
-                    <img ng-src = "{{widget.url}}" />
+                <div ng-switch-when="IMAGE" >
+                    <img ng-src = "{{widget.url}}" style="width:95%;"/>
                 </div>
                 <div ng-switch-when="HTML" ng-bind-html="model.checkSafeHtml(widget.text)">
                 </div>

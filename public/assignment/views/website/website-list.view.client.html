@@ -1,8 +1,8 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
+    <div class="container-fluid">
+        <div class="col-sm-12 ">
 
-            <a href="#/user/{{model.userId}}" class="navbar-brand navbar-link">
+            <a href="#/user/{{model.userId}}" class="navbar-brand navbar-link arrow-style">
                     <span class="glyphicon glyphicon-chevron-left">
                     </span>
             </a>
@@ -21,11 +21,11 @@
 </nav>
 
 
-<div class="container website-list-top">
+<div class="container-fluid website-list-top">
     <div ng-repeat="website in model.websites" class="row-style">
-        <a href="#/user/{{model.userId}}/website/{{website._id}}/page"> {{website.name}}</a>
-        <a href="#/user/{{model.userId}}/website/{{website._id}}">
-            <div class="glyphicon glyphicon-cog float-right"></div>
+        <a href="#/user/{{model.userId}}/website/{{website._id}}/page" class="name-style"> {{website.name}}</a>
+        <a href="#/user/{{model.userId}}/website/{{website._id}}" class="pull-right right-cog-style" >
+            <div class="glyphicon glyphicon-cog "></div>
         </a>
     </div>
 </div>

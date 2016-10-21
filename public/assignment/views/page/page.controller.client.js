@@ -40,6 +40,11 @@
             return randomNumber+"";
         }
 
+        function init() {
+            vm.pages = PageService.findPageByWebsiteId(vm.wid+"");
+        }
+        init();
+
     }
 
     function EditPageController($routeParams, $location, PageService) {
@@ -54,6 +59,7 @@
 
         function init() {
             vm.Page = PageService.findPageById(PageId+"");
+            vm.pages = PageService.findPageByWebsiteId(vm.wid+"");
         }
         init();
 

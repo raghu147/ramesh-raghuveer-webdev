@@ -47,21 +47,21 @@
 
         function handleHeaderWidget() {
 
-            var widget = {_id:getRandomNumber(), widgetType: "HEADER", size: vm.size, text: vm.text };
+            var widget = {_id:getRandomNumber(), name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
             WidgetService.createWidget(vm.pid+"", widget);
             $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
         }
 
         function handleImageWidget() {
 
-            var widget = {_id:getRandomNumber(), widgetType: "IMAGE", text: vm.text, width: vm.width, url: vm.url };
+            var widget = {_id:getRandomNumber(), name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
             WidgetService.createWidget(vm.pid+"", widget);
             $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
         }
 
         function handleYoutubeWidget() {
 
-            var widget = {_id:getRandomNumber(), widgetType: "YOUTUBE", width: vm.width, url: vm.url };
+            var widget = {_id:getRandomNumber(), name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
             WidgetService.createWidget(vm.pid+"", widget);
             $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
         }
@@ -86,25 +86,31 @@
         vm.handleHeaderWidget = handleHeaderWidget;
         vm.handleImageWidget = handleImageWidget;
         vm.handleYoutubeWidget = handleYoutubeWidget;
+        vm.deleteWidget = deleteWidget;
 
         function handleHeaderWidget() {
 
-            var widget = {_id:getRandomNumber(), widgetType: "HEADER", size: vm.size, text: vm.text };
+            var widget = {name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
             WidgetService.updateWidget(vm.wgid+"", widget);
             $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
         }
 
         function handleImageWidget() {
 
-            var widget = {_id:getRandomNumber(), widgetType: "IMAGE", text: vm.text, width: vm.width, url: vm.url };
+            var widget = {name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
             WidgetService.updateWidget(vm.wgid+"", widget);
             $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
         }
 
         function handleYoutubeWidget() {
 
-            var widget = {_id:getRandomNumber(), widgetType: "YOUTUBE", width: vm.width, url: vm.url };
+            var widget = {name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
             WidgetService.updateWidget(vm.wgid+"", widget);
+            $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
+        }
+
+        function deleteWidget() {
+            WidgetService.deleteWidget(vm.wgid+"");
             $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
         }
 

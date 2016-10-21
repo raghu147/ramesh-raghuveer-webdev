@@ -56,3 +56,19 @@ body {
 {
     float:right;
 }
+
+.widget-cog-style {
+    padding-right: 15px;
+}
+
+.right-cog-style {
+    padding-right:15px;
+}
+
+.name-style {
+    padding-left:20px;
+}
+
+.arrow-style {
+    padding-left : 0px;
+}

@@ -1,8 +1,8 @@
 <body>
 
 <nav class="navbar navbar-inverse navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
+    <div class="container-fluid">
+        <div class="">
             <div class="navbar-brand">
                 My Profile
             </div>
@@ -26,7 +26,7 @@
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
+            <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
         </div>
         <div class="form-group">
             <label for="first-name">First Name</label>

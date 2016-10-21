@@ -26,14 +26,41 @@
         };
         return api;
 
+        function updateWidget(widgetId, widget) {
+            for (var i = 0; i < widgets.length; i++) {
+                if (widgets[i]._id === widgetId) {
+
+                    if(widgets[i].size != undefined) {
+                        widgets[i].size = widget.size;
+                    }
+
+                    if(widgets[i].name != undefined) {
+                        widgets[i].name = widget.name;
+                    }
+
+                    if(widgets[i].text != undefined) {
+                        widgets[i].text = widget.text;
+                    }
+
+                    if(widgets[i].width != undefined) {
+                        widgets[i].width = widget.width;
+                    }
+
+                    if(widgets[i].url != undefined) {
+                        widgets[i].url = widget.url;
+                    }
+
+                    return;
+                }
+            }
+        }
+
         function createWidget(pageId, widget) {
             if (isNotEmpty(widget._id) &&
-                isNotEmpty(widget.widgetType) &&
-                isNotEmpty(widget.size) &&
-                isNotEmpty(widget.text))
+                isNotEmpty(widget.widgetType))
             {
                 widget.pageId = pageId;
-                //widgets.push(widget);
+                widgets.push(widget);
             }
         }
 
@@ -61,16 +88,7 @@
 
         }
 
-        function updateWidget(widgetId, widget) {
-            for (var i = 0; i < widgets.length; i++) {
-                if (widgets[i]._id === widgetId) {
-                    widgets[i].widgetType = widget.widgetType;
-                    widgets[i].size = widget.size;
-                    widgets[i].text = widget.text;
-                    widgets[i].pageId = widget.pageId;
-                }
-            }
-        }
+
 
         function deleteWidget(widgetId) {
 
