@@ -11,12 +11,22 @@
 
 
         function login(username, password) {
-            var user = UserService.findUserByCredentials(username, password);
-            if(user === null) {
-                vm.error = "No such user";
-            } else {
-                $location.url("/user/" + user._id);
-            }
+            var promise = UserService.findUserByCredentials(username, password);
+
+            promise
+                .success( function(user) {
+                console.log("response="+user);
+                if(user === null) {
+                    vm.error = "No such user";
+                } else {
+                    $location.url("/user/" + user._id);
+                }
+
+            })
+                .error(function(error){
+                    console.log("error "+ error);
+                });
+
         }
 
     }
@@ -29,15 +39,22 @@
         var userId = parseInt($routeParams.uid);
 
         function saveProfile() {
-
-            UserService.updateUser(userId+"", vm.user);
+            UserService.updateUser(vm.user);
         }
 
-        var user = UserService.findUserById(userId+"");
+        var promise =  UserService.findUserById(userId+"");
 
-        if(user != null) {
-            vm.user = user;
-        }
+        promise
+            .success( function(user) {
+                if(user != null) {
+                    vm.user = user;
+                }
+            })
+            .error(function(error){
+                console.log("error "+ error);
+            });
+
+
     }
 
     function RegisterController($location, UserService) {
@@ -47,20 +64,38 @@
 
         function register(username, password){
 
-            var user = {_id:getRandomNumber(),username:username, password: password};
-            UserService.createUser(user);
-            vm.user = user;
+            var promise = UserService.findUserByUsername(username);
 
-            $location.url("/user/" + user._id);
+            promise
+                .success( function(user) {
 
-        }
+                    if(user != '0')
+                    alert("User already exists! Choose a different username !");
+                    else
+                    {
+                        doRegister(username, password);
+                    }
+                })
+                .error(function(error){
+                    console.log("error "+ error);
+                });
 
-        function getRandomNumber() {
-            var randomNumber = Math.floor(Math.random() * 90000);
-            if(randomNumber < 0)
-                randomNumber *= -1;
 
-            return randomNumber+"";
+            function doRegister()
+            {
+                var user = {username:username, password: password};
+                var promise = UserService.createUser(user);
+
+                promise
+                    .success( function(user) {
+                        vm.user = user;
+                        $location.url("/user/" + user._id);
+                    })
+                    .error(function(error){
+                        console.log("error "+ error);
+                    });
+            }
+
         }
     }
 })();

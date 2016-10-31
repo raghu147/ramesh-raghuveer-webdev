@@ -3,13 +3,7 @@
         .module("WebAppMaker")
         .factory("UserService", UserService);
 
-    function UserService() {
-        var users = [
-            {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
-            {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
-            {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia"},
-            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
-        ];
+    function UserService($http) {
 
         var api = {
             findUserByCredentials: findUserByCredentials,
@@ -22,25 +16,13 @@
         return api;
 
         function findUserByUsername(username) {
-            for (var u in users) {
-                user = users[u];
-                if (user.username === username) {
-                    return user;
-                }
-            }
-            return null;
+            var url = '/api/user?username=' + username;
+            return $http.get(url);
         }
 
-        function updateUser(userId, user) {
-
-            for (var i = 0; i < users.length; i++) {
-                if (users[i]._id === userId) {
-                    users[i].firstName = user.firstName;
-                    users[i].lastName = user.lastName;
-                    users[i].password = user.password;
-                    users[i].username = user.username;
-                }
-            }
+        function updateUser(user) {
+            console.log(user);
+            return $http.put("/api/user/" + user._id, user);
         }
 
         function deleteUser(userId) {
@@ -55,37 +37,20 @@
 
         function findUserById(userId) {
 
-            for (var u in users) {
-                user = users[u];
-                if (user._id === userId) {
-                    return user;
-                }
-            }
-            return null;
+            var url = '/api/user/' + userId;
+            return $http.get(url);
         }
 
         function findUserByCredentials(username, password) {
-            for (var u in users) {
-                user = users[u];
-                if (user.username === username
-                    && user.password === password) {
-                    return user;
-                }
-            }
-            return null;
+
+            var url = '/api/user?username=' + username + '&password=' + password;
+            return $http.get(url);
         }
 
         function createUser(user) {
-
-            if (isNotEmpty(user.username) &&
-                isNotEmpty(user.password) &&
-                isNotEmpty(user._id))
-                users.push(user);
+            return $http.post("/api/user",user);
         }
 
-        function isNotEmpty(val) {
-            return !( val === null || val === "" || val === undefined );
-        }
 
     }
 })();
