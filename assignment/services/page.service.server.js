@@ -19,10 +19,11 @@ module.exports = function(app) {
 
         if (isNotEmpty(page.name)) {
             page.websiteId = websiteId;
-            page._id = new Date().getTime();
+            page._id = new Date().getTime().toString();
             pages.push(page);
 
             res.send('1');
+            return;
         }
 
         res.send('0');
@@ -88,7 +89,6 @@ module.exports = function(app) {
             }
         });
 
-        res.send('0');
     }
 
     function isNotEmpty(val) {

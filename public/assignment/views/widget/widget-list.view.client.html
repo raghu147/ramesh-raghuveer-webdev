@@ -20,10 +20,10 @@
     </div>
 </nav>
 
-<div class="container website-list-top">
-        <div class="col-sm-12 widget-edit-parent" >
+<div class="container website-list-top ">
+        <div class="col-sm-12 widget-edit-parent wam-widgets" >
             <div ng-switch="widget.widgetType"
-                 ng-repeat="widget in model.widgets" class="widget-edit-parent">
+                 ng-repeat="widget in model.widgets" class="widget-edit-parent ">
                 <div>
                     <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}" class="widget-edit-child">
                         <span class="glyphicon glyphicon-cog"></span>

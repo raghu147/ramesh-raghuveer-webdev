@@ -1,5 +1,41 @@
 module.exports = function(app) {
 
+    var multer = require('multer'); // npm install multer --save
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+
+
+    app.post ("/api/upload", upload.single('myFile'), uploadImage);
+
+
+    function uploadImage(req, res) {
+
+
+
+        var width         = req.body.width;
+        var pageId        = req.body.pageId;
+        var userId        = req.body.userId;
+        var websiteId     = req.body.websiteId;
+
+        var myFile        = req.file;
+
+
+        var originalname  = myFile.originalname; // file name on user's computer
+        var filename      = myFile.filename;     // new file name in upload folder
+        var path          = myFile.path;         // full path of uploaded file
+        var destination   = myFile.destination;  // folder where file is saved to
+        var size          = myFile.size;
+        var mimetype      = myFile.mimetype;
+
+
+        var widget  = {widgetType:"IMAGE", url: "/uploads/"+filename};
+        widget._id = new Date().getTime().toString();
+        widget.pageId = pageId;
+        widgets.push(widget);
+        res.redirect('../assignment/index.html#/user/'+userId+'/website/'+websiteId+'/page/'+pageId+"/widget");
+
+    }
+
+
     var widgets = [
         { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
         { "_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
@@ -26,7 +62,7 @@ module.exports = function(app) {
 
         if (isNotEmpty(widget.widgetType))
         {
-            widget._id = new Date().getTime();
+            widget._id = new Date().getTime().toString();
             widget.pageId = pageId;
             widgets.push(widget);
             res.send('1');
@@ -116,7 +152,6 @@ module.exports = function(app) {
             }
         });
 
-        res.send('0');
     }
 
     function isNotEmpty(val) {

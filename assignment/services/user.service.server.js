@@ -12,6 +12,7 @@ module.exports = function(app) {
     app.post("/api/user", createUser);
     app.put("/api/user/:userId" , updateUser);
 
+
     function findUser(req, res)
     {
        if(req.query.username && req.query.password) {
@@ -40,7 +41,6 @@ module.exports = function(app) {
 
         var user = req.body;
         var userId = req.params.userId;
-        console.log(userId);
 
         for (var i = 0; i < users.length; i++) {
             if (users[i]._id === userId) {
@@ -66,7 +66,6 @@ module.exports = function(app) {
                 return;
             }
         });
-        res.send("0");
     }
 
     function findUserById(req, res) {
@@ -98,7 +97,7 @@ module.exports = function(app) {
         var user = req.body;
         if (isNotEmpty(user.username) &&
             isNotEmpty(user.password))
-            user._id = new Date().getTime();
+            user._id = new Date().getTime().toString();
             users.push(user);
             res.send(user);
     }

@@ -22,7 +22,7 @@ module.exports = function(app) {
 
         if (isNotEmpty(website.name)) {
             website.developerId = userId;
-            website._id = new Date().getTime();
+            website._id = new Date().getTime().toString() ;
             websites.push(website);
 
             res.send('1');
@@ -87,11 +87,8 @@ module.exports = function(app) {
             if (result["_id"] === websiteId) {
                 websites.splice(index, 1);
                 res.send('1');
-                return;
             }
         });
-
-        res.send('0');
 
     }
 

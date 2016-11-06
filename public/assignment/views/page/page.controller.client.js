@@ -11,12 +11,20 @@
         vm.userId = parseInt($routeParams['uid']);
         vm.websiteId = parseInt($routeParams['wid']);
 
-
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId+"");
+
+            var promise = PageService.findPageByWebsiteId(vm.websiteId+"");
+            promise
+                .success(function (pages) {
+                    vm.pages = pages;
+                })
+                .error(function (error) {
+                    console.log("error " + error);
+                });
         }
         init();
     }
+
     function NewPageController($routeParams, $location, PageService) {
 
         var vm = this;
@@ -25,23 +33,34 @@
         vm.createPage = createPage;
 
         function createPage(pageName, pageDesc) {
-            var page = {name:pageName,_id:getRandomNumber(), description: pageDesc};
-            PageService.createPage(vm.wid+"", page)
-            $location.url("/user/" + vm.uid + "/website/"+vm.wid+"/page");
 
+            var page = {name:pageName, description: pageDesc};
+            var promise = PageService.createPage(vm.wid+"", page)
+            promise
+                .success(function (result) {
+                    if(result === '1') {
+                        $location.url("/user/" + vm.uid + "/website/"+vm.wid+"/page");
+                    }
+                    else {
+                        alert('Error!');
+                    }
 
-        }
+                })
+                .error(function (error) {
+                    console.log("error " + error);
+                });
 
-        function getRandomNumber() {
-            var randomNumber = Math.floor(Math.random() * 90000);
-            if(randomNumber < 0)
-                randomNumber *= -1;
-
-            return randomNumber+"";
         }
 
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(vm.wid+"");
+            var promise = PageService.findPageByWebsiteId(vm.wid+"");
+            promise
+                .success(function (pages) {
+                    vm.pages = pages;
+                })
+                .error(function (error) {
+                    console.log("error " + error);
+                });
         }
         init();
 
@@ -58,20 +77,63 @@
         var PageId = parseInt($routeParams.pid);
 
         function init() {
-            vm.Page = PageService.findPageById(PageId+"");
-            vm.pages = PageService.findPageByWebsiteId(vm.wid+"");
+
+            var promise = PageService.findPageById(PageId+"");
+            promise
+                .success(function (page) {
+                    vm.Page = page;
+                })
+                .error(function (error) {
+                    console.log("error " + error);
+                });
+
+
+
+            var promise = PageService.findPageByWebsiteId(vm.wid+"");
+            promise
+                .success(function (pages) {
+                    vm.pages = pages;
+                })
+                .error(function (error) {
+                    console.log("error " + error);
+                });
         }
         init();
 
         function updatePage() {
 
-            PageService.updatePage(PageId+"", vm.Page);
-            $location.url("/user/" + vm.uid + "/website/"+vm.wid+"/page");
+            var promise = PageService.updatePage(PageId+"", vm.Page);
+            promise
+                .success(function (result) {
+                    if(result === '1') {
+                        $location.url("/user/" + vm.uid + "/website/"+vm.wid+"/page");
+                    }
+                    else {
+                        alert('Error!');
+                    }
+                })
+                .error(function (error) {
+                    console.log("error " + error);
+                });
+
         }
 
         function deletePage() {
-            PageService.deletePage(PageId+"");
-            $location.url("/user/" + vm.uid + "/website/"+vm.wid+"/page");
+
+            var promise = PageService.deletePage(PageId+"");
+            promise
+                .success(function (result) {
+                    if(result === '1') {
+                        $location.url("/user/" + vm.uid + "/website/"+vm.wid+"/page");                    }
+                    else {
+                        alert('Error!');
+                    }
+                })
+                .error(function (error) {
+                    console.log("error " + error);
+                });
+
+
         }
     }
 })();

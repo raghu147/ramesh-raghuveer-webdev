@@ -45,19 +45,36 @@
             <label for="width">Width</label>
             <input ng-model = "model.widget.width" type="text" class="form-control" id="width" placeholder="Width">
         </div>
-        <div class="form-group">
-            <a class="btn btn-primary btn-block">Choose file</a>
-        </div>
 
-        <div class="form-group">
-            <a class="btn btn-primary btn-block">Upload</a>
-        </div>
+    </form>
+
+
+
+        <form action="/api/upload"  method="post" enctype="multipart/form-data">
+            <input  name="myFile"   type="file" class="form-control"/>
+            <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
+            <input  name="websiteId" value="{{model.wid}}"   style="display: none"/>
+            <input  name="userId" value="{{model.uid}}"   style="display: none"/>
+            <input  name="pageId" value="{{model.pid}}"   style="display: none"/>
+
+            <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
+        </form>
+
+
+
+        <!--<div class="form-group">-->
+            <!--<a class="btn btn-primary btn-block">Choose file</a>-->
+        <!--</div>-->
+
+        <!--<div class="form-group">-->
+            <!--<a class="btn btn-primary btn-block">Upload</a>-->
+        <!--</div>-->
 
         <div ng-if="model.widget._id" class="form-group">
             <a class="btn btn-danger btn-block"
                ng-click="model.deleteWidget()">Delete</a>
         </div>
-    </form>
+
 </div>
 
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
