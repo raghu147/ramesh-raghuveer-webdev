@@ -26,7 +26,7 @@
                     console.log("error " + error);
                 });
 
-            $(".wam-widgets").sortable();
+
         }
 
         init();

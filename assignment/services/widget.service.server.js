@@ -10,7 +10,6 @@ module.exports = function(app) {
     function uploadImage(req, res) {
 
 
-
         var width         = req.body.width;
         var pageId        = req.body.pageId;
         var userId        = req.body.userId;
@@ -48,11 +47,19 @@ module.exports = function(app) {
         { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
     ];
 
+
     app.post("/api/page/:pageId/widget" , createWidget);
     app.get("/api/page/:pageId/widget" , findAllWidgetsForPage);
     app.get("/api/widget/:widgetId" , findWidgetById);
     app.put("/api/widget/:widgetId" , updateWidget);
     app.delete("/api/widget/:widgetId" , deleteWidget);
+    app.put("/page/:pageId/widget", sortWidgets);
+
+    function sortWidgets(req, res) {
+        var initial = parseInt(req.query.initial);
+        var final = parseInt(req.query.final);
+        widgets.splice(final, 0, widgets.splice(initial, 1)[0]);
+    }
 
 
     function createWidget(req, res) {

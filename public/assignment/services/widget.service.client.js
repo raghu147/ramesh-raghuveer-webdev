@@ -10,10 +10,17 @@
             findWidgetsByPageId: findWidgetsByPageId,
             findWidgetById: findWidgetById,
             updateWidget: updateWidget,
-            deleteWidget: deleteWidget
+            deleteWidget: deleteWidget,
+            sort : sort
         };
         return api;
 
+        function sort(pageId, start, end) {
+            var url = '/page/' + pageId + "/widget?initial=" + start +  "&final=" + end;
+            $http.put(url);
+            console.log("Sort called !");
+
+        }
         function createWidget(pageId, widget) {
             var url = '/api/page/' + pageId + "/widget";
             return $http.post(url, widget);
