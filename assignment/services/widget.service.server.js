@@ -27,9 +27,24 @@ module.exports = function(app) {
 
 
         var widget  = {widgetType:"IMAGE", url: "/uploads/"+filename};
-        widget._id = new Date().getTime().toString();
-        widget.pageId = pageId;
-        widgets.push(widget);
+
+        var widgetId = req.body.widgetId;
+
+        if(widgetId == "") {
+            widget._id = new Date().getTime().toString();
+            widget.pageId = pageId;
+            widgets.push(widget);
+        }
+        else
+        {
+            for (var i = 0; i < widgets.length; i++) {
+                if (widgets[i]._id === widgetId) {
+                    widgets[i].url = widget.url;
+                    break;
+                }
+            }
+        }
+
         res.redirect('../assignment/index.html#/user/'+userId+'/website/'+websiteId+'/page/'+pageId+"/widget");
 
     }
@@ -75,7 +90,6 @@ module.exports = function(app) {
             res.send('1');
         }
 
-        res.send('0');
     }
 
     function findAllWidgetsForPage(req, res) {
