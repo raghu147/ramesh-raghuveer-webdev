@@ -7,13 +7,13 @@
 
     function WebsiteListController($routeParams, WebsiteService) {
         var vm = this;
-        vm.userId = parseInt($routeParams['uid']);
+        vm.userId = $routeParams['uid'];
 
         function init() {
             var promise = WebsiteService.findWebsitesByUser(vm.userId + "");
             promise
-                .success(function (websites) {
-                    vm.websites = websites;
+                .success(function (user) {
+                    vm.websites = user.websites;
                 })
                 .error(function (error) {
                     console.log("error " + error);
@@ -26,7 +26,7 @@
 
     function NewWebsiteController($routeParams, $location, WebsiteService) {
         var vm = this;
-        vm.userId = parseInt($routeParams['uid']);
+        vm.userId = $routeParams['uid'];
         vm.createWebsite = createWebsite;
 
         function init() {
@@ -68,8 +68,8 @@
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
 
-        var websiteId = parseInt($routeParams.wid);
-        vm.userId = parseInt($routeParams['uid']);
+        var websiteId = $routeParams.wid;
+        vm.userId = $routeParams['uid'];
 
 
         function updateWebsite() {
@@ -78,7 +78,7 @@
             promise
                 .success(function (val) {
 
-                    if(val ==='1') {
+                    if(val ==='OK') {
                         $location.url("/user/" + vm.userId + "/website");
                     }
                     else {
@@ -99,7 +99,7 @@
             promise
                 .success(function (val) {
 
-                    if(val ==='1') {
+                    if(val ==='OK') {
                         $location.url("/user/" + vm.userId + "/website");
                     }
                     else {

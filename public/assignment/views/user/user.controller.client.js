@@ -15,11 +15,11 @@
 
             promise
                 .success( function(user) {
-                console.log("response="+user);
-                if(user === null) {
-                    vm.error = "No such user";
-                } else {
+                if(user) {
+
                     $location.url("/user/" + user._id);
+                } else {
+                    vm.error = "No such user";
                 }
 
             })
@@ -36,7 +36,7 @@
 
         vm.saveProfile = saveProfile;
 
-        var userId = parseInt($routeParams.uid);
+        var userId = $routeParams.uid;
 
         function saveProfile() {
             UserService.updateUser(vm.user);
@@ -46,7 +46,7 @@
 
         promise
             .success( function(user) {
-                if(user != null) {
+                if(user) {
                     vm.user = user;
                 }
             })
@@ -69,7 +69,7 @@
             promise
                 .success( function(user) {
 
-                    if(user != '0')
+                    if(user)
                     alert("User already exists! Choose a different username !");
                     else
                     {

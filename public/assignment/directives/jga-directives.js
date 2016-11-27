@@ -16,7 +16,7 @@
                     stop : function (event, ui) {
 
                         end = $(ui.item).index();
-                        pageId = "0";//document.baseURI.split("/page/")[1].split("/")[0];
+                        pageId = document.baseURI.split("/page/")[1].split("/")[0];
                         scope.sortableController.sort(pageId, start, end);
                     }
                });

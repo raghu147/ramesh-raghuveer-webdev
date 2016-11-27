@@ -19,8 +19,8 @@
 
             var promise = WidgetService.findWidgetsByPageId(vm.pid);
             promise
-                .success(function (widgets) {
-                    vm.widgets = widgets;
+                .success(function (page) {
+                    vm.widgets = page.widgets;
                 })
                 .error(function (error) {
                     console.log("error " + error);
@@ -127,7 +127,7 @@
             var promise = WidgetService.updateWidget(vm.wgid+"", widget);
             promise
                 .success(function (result) {
-                    if(result === '1') {
+                    if(result === 'OK') {
                         $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
                     }
                 })
@@ -141,7 +141,7 @@
             var promise = WidgetService.deleteWidget(vm.wgid+"");
             promise
                 .success(function (result) {
-                    if(result === '1') {
+                    if(result === 'OK') {
                         $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
                     }
                 })

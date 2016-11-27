@@ -8,15 +8,15 @@
     function PageListController($routeParams, PageService) {
         var vm = this;
 
-        vm.userId = parseInt($routeParams['uid']);
-        vm.websiteId = parseInt($routeParams['wid']);
+        vm.userId = $routeParams['uid'];
+        vm.websiteId = $routeParams['wid'];
 
         function init() {
 
             var promise = PageService.findPageByWebsiteId(vm.websiteId+"");
             promise
-                .success(function (pages) {
-                    vm.pages = pages;
+                .success(function (website) {
+                    vm.pages = website.pages;
                 })
                 .error(function (error) {
                     console.log("error " + error);
@@ -28,8 +28,8 @@
     function NewPageController($routeParams, $location, PageService) {
 
         var vm = this;
-        vm.uid = parseInt($routeParams['uid']);
-        vm.wid = parseInt($routeParams['wid']);
+        vm.uid = $routeParams['uid'];
+        vm.wid = $routeParams['wid'];
         vm.createPage = createPage;
 
         function createPage(pageName, pageDesc) {
@@ -71,10 +71,10 @@
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
 
-        vm.uid = parseInt($routeParams['uid']);
-        vm.wid = parseInt($routeParams['wid']);
-        vm.pid = parseInt($routeParams['pid']);
-        var PageId = parseInt($routeParams.pid);
+        vm.uid = $routeParams['uid'];
+        vm.wid = $routeParams['wid'];
+        vm.pid = $routeParams['pid'];
+        var PageId = $routeParams.pid;
 
         function init() {
 
@@ -105,7 +105,7 @@
             var promise = PageService.updatePage(PageId+"", vm.Page);
             promise
                 .success(function (result) {
-                    if(result === '1') {
+                    if(result === 'OK') {
                         $location.url("/user/" + vm.uid + "/website/"+vm.wid+"/page");
                     }
                     else {
@@ -123,7 +123,7 @@
             var promise = PageService.deletePage(PageId+"");
             promise
                 .success(function (result) {
-                    if(result === '1') {
+                    if(result === 'OK') {
                         $location.url("/user/" + vm.uid + "/website/"+vm.wid+"/page");                    }
                     else {
                         alert('Error!');

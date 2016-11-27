@@ -16,7 +16,7 @@
         return api;
 
         function sort(pageId, start, end) {
-            var url = '/page/' + pageId + "/widget?initial=" + start +  "&final=" + end;
+            var url = '/page/' + pageId + "/widget?pageId="+pageId+"&initial=" + start +  "&final=" + end;
             $http.put(url);
             console.log("Sort called !");
 
