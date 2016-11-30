@@ -17,7 +17,7 @@
             </div>
 
             <p class="navbar-text pull-right">
-                <a ng-click="model.handleYoutubeWidget()" class="navbar-link">
+                <a ng-click="model.handleTextWidget()" class="navbar-link">
                     <span class="glyphicon glyphicon-ok">
                     </span>
                 </a>
@@ -28,20 +28,20 @@
 
 <div class="container-fluid website-list-top">
     <form>
-        <div class="form-group">
-            <label for="websitename">Name</label>
-            <input ng-model = "model.widget.name" type="text" class="form-control" id="websitename" placeholder="Name">
-        </div>
-
-        <div class="form-group">
-            <label for="url">URL</label>
-            <input ng-model = "model.widget.url" type="text" class="form-control" id="url" placeholder="URL">
-        </div>
+        Text
+        <input ng-model="model.widget.text" class="form-control"/>
+        Rows
+        <input ng-model="model.widget.rows" class="form-control" type="number"/>
+        Placeholder
+        <input ng-model="model.widget.placeholder" class="form-control"/>
+        Formatted
+        <input ng-model="model.widget.formatted" type="checkbox"/>
 
         <div ng-if="model.widget._id" class="form-group">
-            <a class="btn btn-danger btn-block"
-               ng-click="model.deleteWidget()">Delete</a>
+        <a class="btn btn-danger btn-block"
+        ng-click="model.deleteWidget()">Delete</a>
         </div>
+
     </form>
 </div>
 

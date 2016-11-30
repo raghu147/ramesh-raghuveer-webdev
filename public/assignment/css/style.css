@@ -37,6 +37,7 @@ body {
 .widget-edit-parent
 {
     position:relative;
+    padding-top: 10px;
 }
 
 .widget-edit-child
@@ -47,6 +48,7 @@ body {
     padding: 0px 0 5px 5px;
     background: white;
     border-radius: 0 0 0 7px;
+    z-index: 10;
 }
 .imgStyle
 {
@@ -80,4 +82,18 @@ body {
 
 .stuff-hidden {
     display: none;
+}
+
+.youtube-widget {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+}
+
+.youtube-widget iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }

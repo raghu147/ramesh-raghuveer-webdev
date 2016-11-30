@@ -32,7 +32,11 @@ module.exports = function() {
                        widgetObj.save();
                        return pageObj.save();
                    });
-            });
+            },
+            function (error) {
+                console.log("Error " + error);
+            }
+            );
     }
 
     function findAllWidgetsForPage(pageId) {
@@ -46,15 +50,38 @@ module.exports = function() {
 
     function updateWidget(widgetId, widget) {
 
+        var widgetObj = {name : widget.name};
+
+        switch(widget.type) {
+            case 'HEADING' :
+                widgetObj.size = widget.size;
+                break;
+            case 'IMAGE' :
+                widgetObj.url =  widget.url;
+                break
+            case 'YOUTUBE' :
+                widgetObj.url =  widget.url;
+                break;
+            case 'TEXT' :
+                widgetObj.text = widget.text;
+                widgetObj.rows = widget.rows;
+                widgetObj.placeholder = widget.placeholder;
+                if(widget.formatted == undefined || widget.formatted == false) {
+                    widgetObj.formatted = false;
+                }
+                else if(widget.formatted) {
+                    widgetObj.formatted = true;
+                }
+                break;
+            case 'HTML' :
+                widgetObj.text = widget.text;
+                break;
+
+        }
         return WidgetModel
             .update(
-                {_id: widgetId},
-                {
-                    name: widget.name,
-                    size: widget.size,
-                }
+                {_id: widgetId},widgetObj
             );
-
     }
 
     function deleteWidget(widgetId) {

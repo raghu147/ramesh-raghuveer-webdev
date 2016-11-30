@@ -74,6 +74,16 @@
                 controller: "NewWidgetController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/website/:wid/page/:pid/widget/widget-text",{
+                templateUrl : "views/widget/widget-text.view.client.html",
+                controller: "NewWidgetController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/website/:wid/page/:pid/widget/widget-html",{
+                templateUrl : "views/widget/widget-html.view.client.html",
+                controller: "NewWidgetController",
+                controllerAs: "model"
+            })
             .when("/user/:uid/website/:wid/page/:pid/widget/:wgid",{
                 templateUrl : "views/widget/widget-edit.view.client.html",
                 controller: "EditWidgetController",

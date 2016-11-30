@@ -77,7 +77,7 @@ module.exports = function(app, model) {
             .deletePage(pageId)
             .then(
                 function(status) {
-                    res.send(200);
+                    res.sendStatus(200);
                 },
                 function (error) {
                     res.sendStatus(400).send(error);

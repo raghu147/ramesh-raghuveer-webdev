@@ -25,8 +25,6 @@
                 .error(function (error) {
                     console.log("error " + error);
                 });
-
-
         }
 
         init();
@@ -54,22 +52,42 @@
         vm.handleHeaderWidget = handleHeaderWidget;
         vm.handleImageWidget = handleImageWidget;
         vm.handleYoutubeWidget = handleYoutubeWidget;
+        vm.handleTextWidget = handleTextWidget;
+        vm.handleHTMLWidget = handleHTMLWidget;
 
         function handleHeaderWidget() {
 
-            var widget = { name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
+            var widget = { name:vm.widget.name, type: "HEADING", size: vm.widget.size, text: vm.widget.text };
             doCreate(widget);
         }
 
         function handleImageWidget() {
 
-            var widget = {name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
+            var widget = {name:vm.widget.name, type: "IMAGE",  url: vm.widget.url };
+            if(widget.url === "" || widget.url == undefined) {
+                alert("URL cannot be empty");
+            }
+            else
             doCreate(widget);
         }
 
         function handleYoutubeWidget() {
 
-            var widget = {name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
+            var widget = {name:vm.widget.name, type: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
+            doCreate(widget);
+        }
+
+        function handleTextWidget() {
+
+            var widget = {text:vm.widget.text, type: "TEXT", rows: vm.widget.rows,
+                placeholder: vm.widget.placeholder, formatted: vm.widget.formatted };
+            doCreate(widget);
+
+        }
+
+        function handleHTMLWidget() {
+
+            var widget = {text:vm.widget.text, type: "HTML" };
             doCreate(widget);
         }
 
@@ -102,24 +120,40 @@
         vm.handleImageWidget = handleImageWidget;
         vm.handleYoutubeWidget = handleYoutubeWidget;
         vm.deleteWidget = deleteWidget;
+        vm.handleTextWidget = handleTextWidget;
+        vm.handleHTMLWidget = handleHTMLWidget;
 
         function handleHeaderWidget() {
 
-            var widget = {name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
-            doUpdate(widget)
+            var widget = {name:vm.widget.name, type: "HEADING", size: vm.widget.size, text: vm.widget.text };
+            doUpdate(widget);
         }
 
         function handleImageWidget() {
 
-            var widget = {name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
-            doUpdate(widget)
+            var widget = {name:vm.widget.name, type: "IMAGE", url: vm.widget.url };
+            doUpdate(widget);
         }
 
         function handleYoutubeWidget() {
 
-            var widget = {name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
-            doUpdate(widget)
+            var widget = {name:vm.widget.name, type: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
+            doUpdate(widget);
 
+        }
+
+        function handleTextWidget() {
+
+            var widget = {text:vm.widget.text, type: "TEXT", rows: vm.widget.rows,
+                placeholder: vm.widget.placeholder, formatted: vm.widget.formatted };
+            doUpdate(widget);
+
+        }
+
+        function handleHTMLWidget() {
+
+            var widget = {text:vm.widget.text, type: "HTML" };
+            doUpdate(widget);
         }
 
         function doUpdate(widget) {

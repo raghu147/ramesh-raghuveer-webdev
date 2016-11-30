@@ -3,17 +3,21 @@ module.exports = function() {
 
     var WidgetSchema = mongoose.Schema({
         _page: {type:mongoose.Schema.Types.ObjectId, ref:'PageModel'},
-        widgetType: String,
+        type: {type: String, enum: ['HEADING', 'IMAGE', 'YOUTUBE', 'HTML', 'INPUT', 'TEXT']},
         name: String,
-        size: Number,
         text: String,
         placeholder: String,
         description: String,
         url: String,
         width: String,
         height: String,
+        rows: Number,
+        size: Number,
+        class: String,
         icon: String,
-        dateCreated: {type: Date, default: Date.now}
+        deleteable: String,
+        formatted: Boolean,
+        dateCreated: {type: Date, default: Date.now},
     }, {collection: "widget"});
 
     return WidgetSchema;
