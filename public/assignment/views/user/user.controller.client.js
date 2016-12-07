@@ -11,7 +11,8 @@
 
 
         function login(username, password) {
-            var promise = UserService.findUserByCredentials(username, password);
+            //var promise = UserService.findUserByCredentials(username, password);
+            var promise = UserService.login(username, password);
 
             promise
                 .success( function(user) {
@@ -31,18 +32,19 @@
 
     }
 
-    function ProfileController($routeParams, UserService) {
+    function ProfileController($routeParams, $location, UserService) {
         var vm = this;
 
         vm.saveProfile = saveProfile;
+        vm.logout = logout;
 
-        var userId = $routeParams.uid;
+        //var userId = $routeParams.uid;
 
         function saveProfile() {
             UserService.updateUser(vm.user);
         }
 
-        var promise =  UserService.findUserById(userId+"");
+        var promise =  UserService.findCurrentUser();
 
         promise
             .success( function(user) {
@@ -54,6 +56,15 @@
                 console.log("error "+ error);
             });
 
+        function logout() {
+            UserService.logout()
+                .success(function () {
+                      $location.url("/login");
+                });
+
+
+        }
+
 
     }
 
@@ -64,38 +75,23 @@
 
         function register(username, password){
 
-            var promise = UserService.findUserByUsername(username);
-
+            var user  = {username: username, password: password};
+            var promise = UserService.register(user);
             promise
-                .success( function(user) {
+                .success(
+                    function(user) {
 
-                    if(user)
-                    alert("User already exists! Choose a different username !");
-                    else
-                    {
-                        doRegister(username, password);
-                    }
-                })
+                        if(user == "0") {
+                            alert("User already exists! Choose a different username !");
+                        }
+                        else {
+                            //$rootScope.currentUser = user;
+                            $location.url("/user/"+user._id);
+                        }
+                    })
                 .error(function(error){
                     console.log("error "+ error);
                 });
-
-
-            function doRegister()
-            {
-                var user = {username:username, password: password};
-                var promise = UserService.createUser(user);
-
-                promise
-                    .success( function(user) {
-                        vm.user = user;
-                        $location.url("/user/" + user._id);
-                    })
-                    .error(function(error){
-                        console.log("error "+ error);
-                    });
-            }
-
         }
     }
 })();
