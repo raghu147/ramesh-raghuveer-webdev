@@ -29,6 +29,11 @@
 <div class="container-fluid website-list-top">
     <form>
 
+        <div class="form-group">
+            <label for="widgetName">Name</label>
+            <input ng-model = "model.widget.name" type="text" class="form-control" id="widgetName" placeholder="Name">
+        </div>
+
         <div ng-model="model.widget.text"
              text-angular
              ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],

@@ -11,7 +11,26 @@
 
 
         function login(username, password) {
-            //var promise = UserService.findUserByCredentials(username, password);
+
+            if(username == undefined || username.length == 0)
+            {
+                $("#username").addClass('alert alert-danger');
+                return;
+            }
+            else {
+                $("#username").removeClass('alert alert-danger');
+            }
+
+            if(password == undefined || password.length == 0)
+            {
+                $("#pass").addClass('alert alert-danger');
+                return;
+            }
+            else {
+                $("#pass").removeClass('alert alert-danger');
+
+            }
+
             var promise = UserService.login(username, password);
 
             promise
@@ -74,6 +93,44 @@
         vm.register = register;
 
         function register(username, password){
+
+
+            if(username == undefined || username.length == 0)
+            {
+                $("#reg_username").addClass('alert alert-danger');
+                return;
+            }
+            else {
+                $("#reg_username").removeClass('alert alert-danger');
+            }
+
+            if(password == undefined || password.length == 0)
+            {
+                $("#reg_password").addClass('alert alert-danger');
+                return;
+            }
+            else {
+                $("#reg_password").removeClass('alert alert-danger');
+
+            }
+
+            var verify = $('#reg_verfify_password').val();
+
+            if(verify == undefined || verify.length == 0)
+            {
+                $("#reg_verfify_password").addClass('alert alert-danger');
+                return;
+            }
+            else {
+                $("#reg_verfify_password").removeClass('alert alert-danger');
+
+            }
+
+            if(verify != password) {
+                alert("Passwords don't match");
+                return;
+            }
+
 
             var user  = {username: username, password: password};
             var promise = UserService.register(user);

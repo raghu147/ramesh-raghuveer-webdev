@@ -44,6 +44,15 @@
 
         function createWebsite(websitename, websitedesc) {
 
+
+            if(websitename == undefined || websitename.length == 0)
+            {
+                $("#websitename").addClass('alert alert-danger');
+                return;
+            }
+            else {
+                $("#websitename").removeClass('alert alert-danger');
+            }
             var website = {name: websitename, description: websitedesc};
             var promise = WebsiteService.createWebsite(vm.userId + "", website);
             promise
@@ -73,6 +82,17 @@
 
 
         function updateWebsite() {
+
+            var websitename = vm.website.name;
+
+            if(websitename == undefined || websitename.length == 0)
+            {
+                $("#websitename").addClass('alert alert-danger');
+                return;
+            }
+            else {
+                $("#websitename").removeClass('alert alert-danger');
+            }
 
             var promise = WebsiteService.updateWebsite(websiteId + "", vm.website);
             promise

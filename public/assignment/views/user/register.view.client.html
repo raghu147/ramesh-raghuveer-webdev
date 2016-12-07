@@ -1,18 +1,25 @@
 <div class="container">
     <h1>Register</h1>
-    <input ng-model="model.username"
-            type="text"
-           class="form-control"
-           placeholder="Username"/>
-    <input type="password"
-           ng-model="model.password"
-           class="form-control"
-           placeholder="Password"/>
-    <input type="password"
-           class="form-control"
-           placeholder="Verify password"/>
-    <a class="btn btn-primary btn-block"
-        ng-click="model.register(model.username, model.password)" >Register</a>
-    <a class="btn btn-danger  btn-block"
-       href="#/login">Cancel</a>
+    <form  id="register_form">
+        <input ng-model="model.username"
+               type="text"
+               class="form-control"
+               placeholder="Username"
+               id="reg_username"
+        />
+        <input type="password"
+               ng-model="model.password"
+               class="form-control"
+               placeholder="Password"
+               id="reg_password"
+              />
+        <input type="password"
+               class="form-control"
+               placeholder="Verify password"
+               id="reg_verfify_password"/>
+        <a class="btn btn-primary btn-block"
+           ng-click="model.register(model.username, model.password)" >Register</a>
+        <a class="btn btn-danger  btn-block"
+           href="#/login">Cancel</a>
+
 </div>

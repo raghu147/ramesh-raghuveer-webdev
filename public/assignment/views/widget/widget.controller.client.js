@@ -57,11 +57,16 @@
 
         function handleHeaderWidget() {
 
+            if(vm.widget == undefined)
+                return;
             var widget = { name:vm.widget.name, type: "HEADING", size: vm.widget.size, text: vm.widget.text };
             doCreate(widget);
         }
 
         function handleImageWidget() {
+
+            if(vm.widget == undefined)
+                return;
 
             var widget = {name:vm.widget.name, type: "IMAGE",  url: vm.widget.url };
             if(widget.url === "" || widget.url == undefined) {
@@ -73,11 +78,17 @@
 
         function handleYoutubeWidget() {
 
+            if(vm.widget == undefined)
+                return;
+
             var widget = {name:vm.widget.name, type: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
             doCreate(widget);
         }
 
         function handleTextWidget() {
+
+            if(vm.widget == undefined)
+                return;
 
             var widget = {text:vm.widget.text, type: "TEXT", rows: vm.widget.rows,
                 placeholder: vm.widget.placeholder, formatted: vm.widget.formatted };
@@ -87,6 +98,9 @@
 
         function handleHTMLWidget() {
 
+            if(vm.widget == undefined)
+                return;
+            
             var widget = {text:vm.widget.text, type: "HTML" };
             doCreate(widget);
         }
@@ -94,6 +108,17 @@
 
 
         function doCreate(widget) {
+
+            var widgetName = widget.name;
+
+            if(widgetName == undefined || widgetName.length == 0)
+            {
+                $("#widgetName").addClass('alert alert-danger');
+                return;
+            }
+            else {
+                $("#widgetName").removeClass('alert alert-danger');
+            }
 
             var promise = WidgetService.createWidget(vm.pid+"", widget);
             promise
@@ -157,6 +182,17 @@
         }
 
         function doUpdate(widget) {
+
+            var widgetName = widget.name;
+
+            if(widgetName == undefined || widgetName.length == 0)
+            {
+                $("#widgetName").addClass('alert alert-danger');
+                return;
+            }
+            else {
+                $("#widgetName").removeClass('alert alert-danger');
+            }
 
             var promise = WidgetService.updateWidget(vm.wgid+"", widget);
             promise

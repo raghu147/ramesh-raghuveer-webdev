@@ -34,6 +34,15 @@
 
         function createPage(pageName, pageDesc) {
 
+
+            if(pageName == undefined || pageName.length == 0)
+            {
+                $("#pagename").addClass('alert alert-danger');
+                return;
+            }
+            else {
+                $("#pagename").removeClass('alert alert-danger');
+            }
             var page = {name:pageName, description: pageDesc};
             var promise = PageService.createPage(vm.wid+"", page)
             promise
@@ -101,6 +110,16 @@
         init();
 
         function updatePage() {
+
+            var pageName = vm.Page.name;
+            if(pageName == undefined || pageName.length == 0)
+            {
+                $("#pagename").addClass('alert alert-danger');
+                return;
+            }
+            else {
+                $("#pagename").removeClass('alert alert-danger');
+            }
 
             var promise = PageService.updatePage(PageId+"", vm.Page);
             promise
